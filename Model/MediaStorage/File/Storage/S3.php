@@ -49,6 +49,7 @@ class S3 extends DataObject
     private $objects = [];
 
     public function __construct(
+        \Magento\Framework\Serialize\SerializerInterface $serializer,
         \Thai\S3\Helper\Data $helper,
         \Magento\MediaStorage\Helper\File\Media $mediaHelper,
         \Magento\MediaStorage\Helper\File\Storage\Database $storageHelper,
@@ -60,7 +61,7 @@ class S3 extends DataObject
         $this->mediaHelper = $mediaHelper;
         $this->storageHelper = $storageHelper;
         $this->logger = $logger;
-        $this->serializer = $this->getSerializer();
+        $this->serializer = $serializer;
 
         $options = [
             'version' => 'latest',
